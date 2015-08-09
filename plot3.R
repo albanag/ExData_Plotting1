@@ -1,9 +1,9 @@
 library(data.table)
-
-df=fread("household_power_consumption.txt", sep=";", na.strings=c("?", ""), colClasses=c("character","character","numeric", "numeric","numeric","numeric","numeric","numeric","numeric"))
-df = as.data.frame(df)
 library(dplyr)
-# head(df)
+
+df = fread(unzip("exdata_data_household_power_consumption.zip"), sep=";", na.strings=c("?", ""))
+df = as.data.frame(df)
+
 df2 = df %>% 
     mutate(
       date_and_time=as.POSIXct(paste(Date,Time), format="%d/%m/%Y %H:%M:%S")
